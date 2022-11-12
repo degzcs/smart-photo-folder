@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'dry-validation'
+gem 'dry-struct'
 
 group :test do
   gem 'pry'
