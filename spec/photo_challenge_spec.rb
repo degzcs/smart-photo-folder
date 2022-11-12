@@ -22,7 +22,7 @@ g.jpg, Krakow, 2016-02-29 22:13:11
     PHT
   end
 
-  context 'validate input list lenth' do
+  context 'happy path' do
     let(:outputs) do
       [
         'Krakow02.jpg',
