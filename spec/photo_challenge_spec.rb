@@ -44,6 +44,30 @@ Mike.png, London, 2015-06-20 15:13:22
       expect(parsed_data.size).to eq 15
     end
 
-    context 'validate input list lenth'
+    context 'validate input list lenth' do
+      let(:outputs) do
+        [
+          'Krakow02.jpg',
+          'London1.png',
+          'Krakow01.png',
+          'Florianopolis2.jpg',
+          'Florianopolis1.jpg',
+          'London2.jpg',
+          'Florianopolis3.png',
+          'Krakow03.jpg',
+          'Krakow09.png',
+          'Krakow07.jpg',
+          'Krakow06.jpg',
+          'Krakow08.jpg',
+          'Krakow04.png',
+          'Krakow05.png',
+          'Krakow10.jpg',
+        ]
+      end
+
+      it 'generates a list with the right outputs' do
+        expect(solution(long_input_string)).to eq outputs
+      end
+    end
   end
 end

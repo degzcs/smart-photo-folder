@@ -1,5 +1,6 @@
 require 'pry'
 require './model/photo_record.rb'
+require './service/file_name_generator.rb'
 # extensions: jpg, png, jpeg
 # example: "photo.jpg, Krakow, 2013-09-05 14:08:15"
 # group the photos by city
@@ -17,10 +18,8 @@ require './model/photo_record.rb'
 def solution(string)
   photo_records = parse(string)
   raise 'The input is too larger' if photo_records.size > 100
-  generator = FileNamesGenerator.new(photo_records)
+  generator = FileNamesGenerator.new(photo_records: photo_records)
   generator.call
-  puts 'Final names are:'
-  puts generator.final_names
 end
 
 def parse(string)
@@ -35,23 +34,5 @@ def parse(string)
   end
   photo_records
 end
-
-outputs = [
-'Krakow02.jpg',
-'London1.png',
-'Krakow01.png',
-'Florianopolis2.jpg',
-'Florianopolis1.jpg',
-'London2.jpg',
-'Florianopolis3.png',
-'Krakow03.jpg',
-'Krakow09.png',
-'Krakow07.jpg',
-'Krakow06.jpg',
-'Krakow08.jpg',
-'Krakow04.png',
-'Krakow05.png',
-'Krakow10.jpg',
-]
 
 

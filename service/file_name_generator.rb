@@ -10,9 +10,8 @@ class FileNamesGenerator
     generate_groups!
     group_names = groups.keys
     group_names.each do |group_name|
-      # sort photo_records by date
-      group = groups[group_name].sort!{|line| line[:photo_record].timestamp }
-      seq_length = seq_length_for(groups)
+      group = groups[group_name].sort_by! {|line| line[:photo_record].timestamp }
+      seq_length = seq_length_for(group)
       group.each_with_index do |line, i|
         seq_number = get_seq_number_by(seq_length, i + 1)
         line[:photo_record].seq_number = seq_number
@@ -38,7 +37,7 @@ class FileNamesGenerator
       next if key.nil?
 
       @groups[key] = [] if @groups[key].nil?
-      @groups[key] << { photo_record: photo_record, index: i }
+      @groups[key] << { photo_record: photo_record, index: i + 1 }
     end
   end
 

@@ -39,9 +39,9 @@ RSpec.describe FileNamesGenerator do
       subject.generate_groups!
       groups = subject.groups
       expect(groups[:krakow][0][:photo_record]).to eq photo_record_1
-      expect(groups[:krakow][0][:index]).to eq 0
+      expect(groups[:krakow][0][:index]).to eq 1
       expect(groups[:london][0][:photo_record]).to eq photo_record_2
-      expect(groups[:london][0][:index]).to eq 1
+      expect(groups[:london][0][:index]).to eq 2
     end
   end
 
