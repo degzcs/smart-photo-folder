@@ -15,9 +15,7 @@ require './model/photo_record.rb'
 # Write a function that, given a string representing the list of `M` photos, returns the string representing the list of the new names of all photos (the order of photos should stay the same).
 
 def solution(string)
-  # convert the string input into an array of M elements
   photo_records = parse(string)
-  # validate that the array is not longer than 100 elements and less than 1
   raise 'The input is too larger' if photo_records.size > 100
 
   # TODO:

@@ -43,5 +43,7 @@ Mike.png, London, 2015-06-20 15:13:22
       expect(parsed_data[-1].photo_name).to eq 'g.jpg'
       expect(parsed_data.size).to eq 15
     end
+
+    context 'validate input list lenth'
   end
 end
