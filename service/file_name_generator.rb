@@ -7,31 +7,35 @@ class FileNamesGenerator
   end
 
   def call
-    # TODO:
-    # create a system for tag each photo in a sequential way
     generate_groups!
     group_names = groups.keys
     group_names.each do |group_name|
-      seq_length = groups[group_name].size
       # sort photo_records by date
-      # set the seq number
+      group = groups[group_name].sort!{|line| line[:photo_record].timestamp }
+      seq_length = group.size
+      group.each_with_index do |line, i|
+        seq_number = get_seq_number_by(seq_length, i + 1)
+        line[:photo_record].seq_number = seq_number
+      end
     end
-
-    #mix all groups and sort them by date
+    groups.values.flatten.sort_by {|ph| ph[:index] }.map{|re| "#{re[:photo_record].city_name}#{re[:photo_record].seq_number}.#{re[:photo_record].extension}" }
   end
 
-  # group photos by city
   def generate_groups!
-    photo_records.each do |photo_record|
+    photo_records.each_with_index do |photo_record, i|
       key = key_for(photo_record)
       next if key.nil?
 
       @groups[key] = [] if @groups[key].nil?
-      @groups[key] <<  photo_record
+      @groups[key] << { photo_record: photo_record, index: i }
     end
   end
 
   def key_for(photo_record)
     photo_record.city_name.downcase.to_sym
+  end
+
+  def get_seq_number_by(seq_length, counter)
+    counter.to_s.rjust(seq_length.to_i, '0')
   end
 end

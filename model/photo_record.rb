@@ -19,4 +19,13 @@ class PhotoRecord < Dry::Struct
     format: /^[A-Z].+/
   )
   attribute :timestamp, Types::Strict::DateTime # TODO: set time based on location: time zone
+  attribute :seq_number, Types::Strict::String.optional
+
+  def seq_number=(value)
+    @attributes = attributes.merge!(seq_number: value.to_s)
+  end
+
+  def extension
+    photo_name.gsub(/[^\s]+(\.)/, '')
+  end
 end
