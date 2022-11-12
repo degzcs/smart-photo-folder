@@ -45,8 +45,5 @@ RSpec.describe 'PhotoRecord' do
                         seq_number: nil)
       end.to raise_error /:city_name violates constraints/
     end
-
-    xit 'raises an error when there is more than one record with the same time' do
-    end
   end
 end
