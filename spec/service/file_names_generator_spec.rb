@@ -47,7 +47,22 @@ RSpec.describe FileNamesGenerator do
 
   context '#call' do
     it 'creates the final file names' do
-      expect(subject.call).to eq(["Krakow02.jpg", "London1.png", "Krakow01.png", "Florianopolis1.jpg"])
+      expect(subject.call).to eq(["Krakow2.jpg", "London1.png", "Krakow1.png", "Florianopolis1.jpg"])
+    end
+  end
+
+  context '#get_seq_number_by' do
+    it 'prepends zeros based on params' do
+      expect(subject.get_seq_number_by(1, 3)).to eq '3'
+      expect(subject.get_seq_number_by(2, 3)).to eq '03'
+      expect(subject.get_seq_number_by(3, 3)).to eq '003'
+    end
+  end
+
+  context '#seq_length_for' do
+    it 'gets the right size' do
+      expect(subject.seq_length_for([1,1,1])).to eq 1
+      expect(subject.seq_length_for([1,1,1,1,1,1,1,1,1,1,1])).to eq 2
     end
   end
 end

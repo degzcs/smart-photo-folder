@@ -12,13 +12,24 @@ class FileNamesGenerator
     group_names.each do |group_name|
       # sort photo_records by date
       group = groups[group_name].sort!{|line| line[:photo_record].timestamp }
-      seq_length = group.size
+      seq_length = seq_length_for(groups)
       group.each_with_index do |line, i|
         seq_number = get_seq_number_by(seq_length, i + 1)
         line[:photo_record].seq_number = seq_number
       end
     end
-    groups.values.flatten.sort_by {|ph| ph[:index] }.map{|re| "#{re[:photo_record].city_name}#{re[:photo_record].seq_number}.#{re[:photo_record].extension}" }
+    generate_names!
+  end
+
+  def generate_names!
+    sorted_groups = groups.values.flatten.sort_by {|line| line[:index] }
+    sorted_groups.map do |line|
+      "#{line[:photo_record].city_name}#{line[:photo_record].seq_number}.#{line[:photo_record].extension}"
+    end
+  end
+
+  def seq_length_for(array)
+    array.size.to_s.split('').size
   end
 
   def generate_groups!

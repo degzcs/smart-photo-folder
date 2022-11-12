@@ -14,31 +14,35 @@ RSpec.describe 'PhotoRecord' do
     it 'accepts all inputs as valid' do
       record = PhotoRecord.new(photo_name: photo_name,
                                city_name: city_name,
-                               timestamp: timestamp)
+                               timestamp: timestamp,
+                               seq_number: nil)
       expect(record).not_to be nil
     end
 
     it 'raise an error becuase the photo name is incorrect' do
       expect do
         PhotoRecord.new(photo_name: wrong_photo_name,
-                               city_name: city_name,
-                               timestamp: timestamp)
+                        city_name: city_name,
+                        timestamp: timestamp,
+                        seq_number: nil)
       end.to raise_error /:photo_name violates constraints/
     end
 
     it 'raise an error becuase the timestamp is incorrect' do
       expect do
         PhotoRecord.new(photo_name: photo_name,
-                               city_name: city_name,
-                               timestamp: wrong_timestamp)
+                        city_name: city_name,
+                        timestamp: wrong_timestamp,
+                        seq_number: nil)
       end.to raise_error /:timestamp violates constraints/
     end
 
     it 'raise an error becuase the city_name is incorrect' do
       expect do
         PhotoRecord.new(photo_name: photo_name,
-                               city_name: wrong_city_name,
-                               timestamp: timestamp)
+                        city_name: wrong_city_name,
+                        timestamp: timestamp,
+                        seq_number: nil)
       end.to raise_error /:city_name violates constraints/
     end
 

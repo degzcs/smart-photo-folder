@@ -28,9 +28,10 @@ def parse(string)
   photo_records = []
   lines.each do |line|
     photo_name, city_name, timestamp = line.split(',')
-    photo_records << PhotoRecord.new(photo_name: photo_name,
-                                     city_name: city_name,
-                                     timestamp: DateTime.parse(timestamp))
+    photo_records << PhotoRecord.new(photo_name: photo_name.strip,
+                                     city_name: city_name.strip,
+                                     timestamp: DateTime.parse(timestamp),
+                                     seq_number: nil)
   end
   photo_records
 end
