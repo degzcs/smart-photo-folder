@@ -9,8 +9,8 @@ end
 # create a model per record that helps to sort them in proper way
 # # validate the extensions in the model [done]
 # # validate the name of the city starts with a Capital letter [done]
-# # validate the uniqueness of the time per photo record
-# # complete the sequence for the photo based on the list length
+# # validate the uniqueness of the time per photo record [pending]: compare time zone and then the datetime
+# # # validate the time zone based on the name of the city
 class PhotoRecord < Dry::Struct
   attribute :photo_name, Types::Strict::String.constrained(
     format: /[^\s]+(\.)(?i)(jpe?g|png)$/

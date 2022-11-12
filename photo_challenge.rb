@@ -17,10 +17,10 @@ require './model/photo_record.rb'
 def solution(string)
   photo_records = parse(string)
   raise 'The input is too larger' if photo_records.size > 100
-
-  # TODO:
-  # group photos by city
-  # create a system for tag each photo in a sequential way
+  generator = FileNamesGenerator.new(photo_records)
+  generator.call
+  puts 'Final names are:'
+  puts generator.final_names
 end
 
 def parse(string)
