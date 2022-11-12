@@ -36,9 +36,14 @@ class FileNamesGenerator
       key = key_for(photo_record)
       next if key.nil?
 
-      @groups[key] = [] if @groups[key].nil?
+      @groups[key] = [] if groups[key].nil?
+      next if already_added?(groups[key], photo_record)
       @groups[key] << { photo_record: photo_record, index: i + 1 }
     end
+  end
+
+  def already_added?(group, photo_record)
+    group.any?{|line| line[:photo_record].timestamp == photo_record.timestamp}
   end
 
   def key_for(photo_record)
